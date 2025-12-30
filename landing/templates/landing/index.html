@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitPal | Launching Soon</title>
+  <meta name="description" content="FitPal launch page with upcoming features, team, and early feedback." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --matte-900: #0a0b0d;
+      --matte-800: #101216;
+      --matte-700: #151820;
+      --line-1: rgba(255, 255, 255, 0.06);
+      --line-2: rgba(0, 0, 0, 0.35);
+      --stroke: rgba(255, 255, 255, 0.07);
+      --text: #f5f6f7;
+      --muted: #b8bec6;
+      --accent-1: #26A69A;
+      --accent-2: #00897B;
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --speed: 300ms;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Inter", system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        linear-gradient(135deg, transparent 0%, transparent 48%, var(--line-2) 50%, transparent 52%, transparent 100%),
+        repeating-linear-gradient(135deg, var(--line-1) 0px, var(--line-1) 1px, transparent 1px, transparent 14px),
+        radial-gradient(1200px 800px at 20% -10%, rgba(38, 166, 154, 0.12), transparent 60%),
+        radial-gradient(900px 600px at 120% 120%, rgba(0, 137, 123, 0.12), transparent 60%),
+        linear-gradient(180deg, var(--matte-900), var(--matte-800));
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1200px, 92vw);
+      margin-inline: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(12, 13, 15, 0.7);
+      backdrop-filter: saturate(150%) blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .nav-links a:hover {
+      background: #121318;
+      border-color: var(--stroke);
+    }
+
+    .hamburger {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--stroke);
+      padding: 0.6rem 0.7rem;
+      border-radius: 12px;
+      color: var(--text);
+    }
+
+    .mobile-panel {
+      display: none;
+      position: fixed;
+      inset: 0 0 auto 0;
+      top: 64px;
+      background: #0c0d0f;
+      z-index: 900;
+      border-top: 1px solid var(--stroke);
+    }
+
+    .mobile-group {
+      padding: 1rem;
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .mobile-group h4 {
+      margin: 0.2rem 0 0.6rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .mobile-group a {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem;
+      border-radius: 10px;
+    }
+
+    .mobile-group a:hover {
+      background: #14171c;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.4px;
+    }
+
+    .logo .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .logo .mark i {
+      color: #ffffff;
+    }
+
+    .accent-text {
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      background: rgba(18, 19, 22, 0.6);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #ffffff;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--speed) ease, box-shadow var(--speed) ease, background var(--speed) ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      background: linear-gradient(135deg, #4DB6AC, #26A69A);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--stroke);
+      box-shadow: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--stroke);
+      padding: 80px 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 60% at 50% 40%, rgba(38, 166, 154, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin: 0.7rem 0 0.6rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 auto 1.2rem;
+      color: #d5d8dd;
+      font-size: 1.1rem;
+    }
+
+    .cta {
+      display: flex;
+      justify-content: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      position: relative;
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 800;
+      margin: 0 0 2rem;
+      color: var(--text);
+    }
+
+    .section-heading .underline {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .section-heading .underline span {
+      display: block;
+      width: 60px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underline 1s ease-out forwards;
+    }
+
+    .section-heading .underline span:nth-child(2) {
+      width: 40px;
+      animation-delay: 0.2s;
+    }
+
+    .section-heading .underline span:nth-child(3) {
+      width: 20px;
+      animation-delay: 0.4s;
+    }
+
+    @keyframes underline {
+      to {
+        transform: scaleX(1);
+      }
+    }
+
+    .section-intro {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      text-align: center;
+      color: #d5d8dd;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .card {
+      background: var(--matte-700);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--speed) ease, box-shadow var(--speed) ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card i {
+      font-size: 1.35rem;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 0.9rem;
+    }
+
+    .card h4 {
+      margin: 0.7rem 0 0.4rem;
+      font-weight: 700;
+    }
+
+    .card p {
+      color: #c9ced4;
+      line-height: 1.5;
+    }
+
+    .countdown-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      margin-top: 1.5rem;
+    }
+
+    .countdown-card {
+      text-align: center;
+      padding: 1.2rem 1rem;
+    }
+
+    .countdown-card strong {
+      font-size: 1.8rem;
+      display: block;
+    }
+
+    .best-card {
+      background: linear-gradient(160deg, rgba(38, 166, 154, 0.16), rgba(0, 137, 123, 0.08));
+      border: 1px solid rgba(38, 166, 154, 0.35);
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(18, 19, 22, 0.7);
+      color: #d5d8dd;
+      font-size: 0.85rem;
+    }
+
+    .developers {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .dev-card {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .dev-card img {
+      height: 210px;
+    }
+
+    .dev-card p {
+      color: #c9ced4;
+      line-height: 1.5;
+    }
+
+    .feedback-wrap {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .form {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      background: #0f1114;
+      color: var(--text);
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+
+    .rating input {
+      display: none;
+    }
+
+    .rating label {
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: rgba(38, 166, 154, 0.55);
+      transition: color var(--speed) ease, transform var(--speed) ease;
+    }
+
+    .rating label .solid {
+      display: none;
+    }
+
+    .rating input:checked ~ label,
+    .rating label:hover,
+    .rating label:hover ~ label {
+      color: var(--accent-1);
+    }
+
+    .rating input:checked ~ label .solid,
+    .rating label:hover .solid,
+    .rating label:hover ~ label .solid {
+      display: inline-block;
+    }
+
+    .rating input:checked ~ label .outline,
+    .rating label:hover .outline,
+    .rating label:hover ~ label .outline {
+      display: none;
+    }
+
+    .feedback-list {
+      display: grid;
+      gap: 1rem;
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 0.35rem;
+    }
+
+    .feedback-card {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .feedback-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(38, 166, 154, 0.85), rgba(0, 137, 123, 0.85));
+      color: #ffffff;
+      font-weight: 800;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feedback-name {
+      margin: 0;
+    }
+
+    .feedback-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #ffd166;
+      font-weight: 700;
+    }
+
+    .feedback-rating span {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .feedback-message {
+      margin: 0;
+      color: #c9ced4;
+      line-height: 1.6;
+    }
+
+    .feedback-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .feedback-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 999px;
+    }
+
+    .field-error {
+      color: #ffb4b4;
+      font-size: 0.85rem;
+    }
+
+    .toast-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 6, 8, 0.75);
+      display: grid;
+      place-items: center;
+      z-index: 2000;
+    }
+
+    .toast {
+      width: min(420px, 92vw);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .toast h4 {
+      margin: 0.4rem 0 0.6rem;
+    }
+
+    .toast p {
+      color: var(--muted);
+      margin: 0 0 1rem;
+    }
+
+    .toast .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .confetti {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .confetti span {
+      position: absolute;
+      width: 10px;
+      height: 14px;
+      opacity: 0.8;
+      animation: confetti-fall 2.6s ease-in-out infinite;
+    }
+
+    .confetti span:nth-child(1) { left: 10%; background: #26A69A; animation-delay: 0s; }
+    .confetti span:nth-child(2) { left: 30%; background: #ffd166; animation-delay: 0.4s; }
+    .confetti span:nth-child(3) { left: 50%; background: #8ecae6; animation-delay: 0.2s; }
+    .confetti span:nth-child(4) { left: 70%; background: #f4a261; animation-delay: 0.6s; }
+    .confetti span:nth-child(5) { left: 88%; background: #26A69A; animation-delay: 0.1s; }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(-40px) rotate(0deg); }
+      100% { transform: translateY(220px) rotate(140deg); }
+    }
+
+    .toast-hidden {
+      display: none;
+    }
+
+    .ribbon {
+      position: fixed;
+      right: -60px;
+      bottom: 40px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      color: #ffffff;
+      padding: 0.5rem 2.6rem;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transform: rotate(-45deg);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--stroke);
+      padding: 2.5rem 0 2rem;
+      color: #b8bdc5;
+      text-align: center;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 1.25rem;
+      text-align: left;
+      padding-bottom: 2rem;
+    }
+
+    .footer-col h5 {
+      margin: 0.2rem 0 1rem;
+      color: #e6e8eb;
+    }
+
+    .footer-col a {
+      display: block;
+      color: #c7ccd3;
+      padding: 0.25rem 0;
+    }
+
+    @media (max-width: 1100px) {
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: inline-flex;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .grid-4, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        min-height: 60vh;
+      }
+      .section-heading {
+        font-size: 2rem;
+      }
+      section {
+        padding: 60px 0;
+      }
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .ribbon {
+        bottom: 12px;
+        right: 12px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="logo" aria-label="FitPal">
+        <span class="mark"><i class="fa-solid fa-dumbbell"></i></span>
+        <span>FIT<span class="accent-text">PAL</span></span>
+      </div>
+      <nav class="nav-links" aria-label="Launch page menu">
+        <a href="#about-project"><i class="fa-solid fa-diagram-project"></i> About Project</a>
+        <a href="#developers"><i class="fa-solid fa-user-gear"></i> Developers</a>
+        <a href="#features"><i class="fa-solid fa-list-check"></i> Features</a>
+        <a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a>
+      </nav>
+      <div class="pill"><i class="fa-solid fa-rocket"></i> Launching Soon</div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+    <div class="mobile-panel" id="mobilePanel" hidden>
+      <div class="container">
+        <div class="mobile-group">
+          <h4>Launch Page</h4>
+          <a href="#about-project"><i class="fa-solid fa-diagram-project"></i> About Project</a>
+          <a href="#developers"><i class="fa-solid fa-user-gear"></i> Developers</a>
+          <a href="#features"><i class="fa-solid fa-list-check"></i> Features</a>
+          <a href="#feedback"><i class="fa-solid fa-comments"></i> Feedback</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="pill">Coming soon in 30 days</div>
+        <h1>FitPal is almost here</h1>
+        <p>
+          Your personal fitness hub for workouts, wellness, nutrition, and community.
+          We are building the best experience with smart plans, rich exercise media, and friendly guidance.
+        </p>
+        <div class="cta">
+          <button class="btn" type="button"><i class="fa-solid fa-bell"></i> Notify Me</button>
+          <button class="btn btn-ghost" type="button"><i class="fa-solid fa-envelope"></i> Join the Waitlist</button>
+        </div>
+        <div class="countdown-grid" aria-label="Countdown">
+          <div class="card countdown-card"><strong id="days">30</strong><span>Days</span></div>
+          <div class="card countdown-card"><strong id="hours">00</strong><span>Hours</span></div>
+          <div class="card countdown-card"><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div class="card countdown-card"><strong id="seconds">00</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <h2 class="section-heading">What you get on launch
+          <div class="underline">
+            <span></span><span></span><span></span>
+          </div>
+        </h2>
+        <p class="section-intro">Everything in FitPal is designed to keep you consistent, motivated, and supported.</p>
+        <div class="grid grid-3">
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/2075354173/photo/fitness-couple-is-doing-kettlebell-twist-in-a-gym-togehter.jpg?s=612x612&w=0&k=20&c=lfs1V1d0YB33tn72myi6FElJnylPJYYM9lW5ZhlnYqY=" alt="Workout library">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h4>Workout Library</h4>
+            <p>Cardio, strength, yoga, HIIT, and stretching with animated exercise avatars.</p>
+          </article>
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/1849342295/photo/happy-athletic-couple-exercising-with-hand-weights-in-lunge-position-in-a-gym.jpg?s=612x612&w=0&k=20&c=uOM8_F2uFQPqvlAHXFwpc2TvqSDl8v9oZ5buN3eQvqo=" alt="Smart workout plans">
+            <i class="fa-solid fa-list-check"></i>
+            <h4>Smart Plans</h4>
+            <p>Daily plans that adapt to your schedule, equipment, and fitness level.</p>
+          </article>
+          <article class="card">
+            <img src="https://thumbs.dreamstime.com/b/urban-runner-workout-back-view-athletic-black-african-american-professional-sport-man-running-training-hard-outdoors-asphalt-156110618.jpg" alt="Progress overview">
+            <i class="fa-solid fa-calendar-check"></i>
+            <h4>Progress Overview</h4>
+            <p>Track streaks, completed days, and workout consistency in one view.</p>
+          </article>
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/1489414046/photo/portrait-of-an-attractive-empowered-multiethnic-woman-looking-at-camera-and-charmingly.jpg?s=612x612&w=0&k=20&c=p9-7xtXTjNUUDYJVJmZ2pka98lr2xiFCM1jFLqpgF6Q=" alt="Saved exercises">
+            <i class="fa-solid fa-bookmark"></i>
+            <h4>Saved Exercises</h4>
+            <p>Bookmark workouts and build your own custom sessions.</p>
+          </article>
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/1293479617/photo/woman-hands-eating-vegan-salad-of-baked-vegetables-avocado-tofu-and-buckwheat-buddha-bowl-top.jpg?s=612x612&w=0&k=20&c=jATx1jeDBsUgT2zIla6eh-i1OUPvIfgkb0-4QnAruAY=" alt="AI coach">
+            <i class="fa-solid fa-robot"></i>
+            <h4>AI Coach</h4>
+            <p>Ask questions, get quick guidance, and stay motivated every day.</p>
+          </article>
+          <article class="card">
+            <img src="https://thumbs.dreamstime.com/b/athletic-woman-running-up-mountain-sky-sea-background-professional-runner-doing-cardio-work-out-outdoor-natural-152521222.jpg" alt="Wellness tools">
+            <i class="fa-solid fa-spa"></i>
+            <h4>Wellness Tools</h4>
+            <p>Breathing, recovery, and mindfulness to stay balanced.</p>
+          </article>
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/1293479617/photo/woman-hands-eating-vegan-salad-of-baked-vegetables-avocado-tofu-and-buckwheat-buddha-bowl-top.jpg?s=612x612&w=0&k=20&c=jATx1jeDBsUgT2zIla6eh-i1OUPvIfgkb0-4QnAruAY=" alt="Nutrition hub">
+            <i class="fa-solid fa-bowl-food"></i>
+            <h4>Nutrition Hub</h4>
+            <p>Meal guidance, recipes, and hydration tracking to power your training.</p>
+          </article>
+          <article class="card">
+            <img src="https://media.istockphoto.com/id/1212006375/photo/confident-asian-businesswoman-in-office.jpg?s=612x612&w=0&k=20&c=SEgvQZiWHK1uqefySpyFTJ8oMHpdnWyjkoZymrFUpHA=" alt="Performance insights">
+            <i class="fa-solid fa-chart-line"></i>
+            <h4>Performance Insights</h4>
+            <p>Visual progress charts, session summaries, and goal tracking.</p>
+          </article>
+          <article class="card">
+            <img src="https://thumbs.dreamstime.com/b/young-black-woman-as-software-developer-portrait-female-looking-camera-smiling-against-programming-code-computer-247428950.jpg" alt="Community challenges">
+            <i class="fa-solid fa-users"></i>
+            <h4>Community Challenges</h4>
+            <p>Join challenges, share wins, and stay accountable with friends.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about-project">
+      <div class="container">
+        <h2 class="section-heading">About FitPal
+          <div class="underline">
+            <span></span><span></span><span></span>
+          </div>
+        </h2>
+        <p class="section-intro">
+          FitPal brings workouts, nutrition guidance, and wellness tools together so you can focus on results.
+          We blend expert content with smart personalization to keep you consistent.
+        </p>
+        <div class="grid grid-3">
+          <article class="card">
+            <i class="fa-solid fa-layer-group"></i>
+            <h4>All-in-one platform</h4>
+            <p>Workouts, meal guidance, wellness, and community in a single dashboard.</p>
+          </article>
+          <article class="card">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h4>Personalized</h4>
+            <p>Plans adapt to your goals, equipment, and fitness level automatically.</p>
+          </article>
+          <article class="card">
+            <i class="fa-solid fa-chart-pie"></i>
+            <h4>Progress driven</h4>
+            <p>Track improvements, celebrate streaks, and stay motivated.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="best">
+      <div class="container">
+        <div class="card best-card">
+          <h3>Best experience highlight</h3>
+          <p>
+            FitPal gives you one dashboard for workouts, nutrition guidance, wellness check-ins,
+            and personalized recommendations. Everything you need in one place.
+          </p>
+          <div class="badge-row">
+            <div class="badge"><i class="fa-solid fa-bolt"></i> Fast onboarding</div>
+            <div class="badge"><i class="fa-solid fa-shield-heart"></i> Safe and guided</div>
+            <div class="badge"><i class="fa-solid fa-layer-group"></i> All-in-one</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="developers">
+      <div class="container">
+        <h2 class="section-heading">Developers
+          <div class="underline">
+            <span></span><span></span><span></span>
+          </div>
+        </h2>
+        <div class="developers">
+          <div class="card dev-card">
+            <img src="https://media.istockphoto.com/id/1489414046/photo/portrait-of-an-attractive-empowered-multiethnic-woman-looking-at-camera-and-charmingly.jpg?s=612x612&w=0&k=20&c=p9-7xtXTjNUUDYJVJmZ2pka98lr2xiFCM1jFLqpgF6Q=" alt="Azka Khan developer">
+            <h4>Azka Khan</h4>
+            <p>Lead frontend developer with expertise in user interface design and responsive web technologies. She ensures FitPal's seamless user experience.</p>
+          </div>
+          <div class="card dev-card">
+            <img src="https://media.istockphoto.com/id/1212006375/photo/confident-asian-businesswoman-in-office.jpg?s=612x612&w=0&k=20&c=SEgvQZiWHK1uqefySpyFTJ8oMHpdnWyjkoZymrFUpHA=" alt="Rabia developer">
+            <h4>Rabia</h4>
+            <p>Specializes in backend development and AI integration. Her work powers the intelligent coaching features of FitPal.</p>
+          </div>
+          <div class="card dev-card">
+            <img src="https://thumbs.dreamstime.com/b/young-black-woman-as-software-developer-portrait-female-looking-camera-smiling-against-programming-code-computer-247428950.jpg" alt="Zahra Tabish developer">
+            <h4>Zahra Tabish</h4>
+            <p>Full-stack developer focusing on database management and app optimization for peak performance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback">
+      <div class="container">
+        <h2 class="section-heading">Feedback and ratings
+          <div class="underline">
+            <span></span><span></span><span></span>
+          </div>
+        </h2>
+        <div class="feedback-wrap">
+          <form class="card form" method="post" action="#feedback">
+            {% csrf_token %}
+            <h4>Share your feedback</h4>
+            <input type="text" name="name" placeholder="Your name" value="{{ form.name.value|default_if_none:'' }}" required>
+            {% if form.name.errors %}<div class="field-error">{{ form.name.errors|striptags }}</div>{% endif %}
+            <input type="email" name="email" placeholder="Your email" value="{{ form.email.value|default_if_none:'' }}" required>
+            {% if form.email.errors %}<div class="field-error">{{ form.email.errors|striptags }}</div>{% endif %}
+            <div>
+              <p style="margin:0 0 0.5rem; color: var(--muted);">Rate FitPal</p>
+              {% with selected=form.rating.value|stringformat:"s" %}
+              <div class="rating">
+                <input type="radio" id="rate5" name="rating" value="5" {% if selected == "5" %}checked{% endif %}>
+                <label for="rate5"><i class="fa-regular fa-star outline"></i><i class="fa-solid fa-star solid"></i></label>
+                <input type="radio" id="rate4" name="rating" value="4" {% if selected == "4" %}checked{% endif %}>
+                <label for="rate4"><i class="fa-regular fa-star outline"></i><i class="fa-solid fa-star solid"></i></label>
+                <input type="radio" id="rate3" name="rating" value="3" {% if selected == "3" %}checked{% endif %}>
+                <label for="rate3"><i class="fa-regular fa-star outline"></i><i class="fa-solid fa-star solid"></i></label>
+                <input type="radio" id="rate2" name="rating" value="2" {% if selected == "2" %}checked{% endif %}>
+                <label for="rate2"><i class="fa-regular fa-star outline"></i><i class="fa-solid fa-star solid"></i></label>
+                <input type="radio" id="rate1" name="rating" value="1" {% if selected == "1" %}checked{% endif %}>
+                <label for="rate1"><i class="fa-regular fa-star outline"></i><i class="fa-solid fa-star solid"></i></label>
+              </div>
+              {% endwith %}
+              {% if form.rating.errors %}<div class="field-error">{{ form.rating.errors|striptags }}</div>{% endif %}
+            </div>
+            <textarea name="message" rows="4" placeholder="Tell us what you want to see." required>{{ form.message.value|default_if_none:'' }}</textarea>
+            {% if form.message.errors %}<div class="field-error">{{ form.message.errors|striptags }}</div>{% endif %}
+            <button class="btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Send feedback</button>
+          </form>
+
+          <div class="feedback-list" role="region" aria-label="Feedback list">
+            {% for fb in feedbacks %}
+            <div class="card feedback-card">
+              <div class="feedback-header">
+                <div class="avatar" aria-hidden="true">{{ fb.name|slice:":1" }}</div>
+                <div>
+                  <h4 class="feedback-name">{{ fb.name }}</h4>
+                  <div class="feedback-rating" aria-label="Rating {{ fb.rating }} out of 5">
+                    {% for i in "12345" %}
+                      {% if forloop.counter <= fb.rating %}
+                        <i class="fa-solid fa-star"></i>
+                      {% else %}
+                        <i class="fa-regular fa-star"></i>
+                      {% endif %}
+                    {% endfor %}
+                    <span>{{ fb.rating|floatformat:1 }}/5</span>
+                  </div>
+                </div>
+              </div>
+              <p class="feedback-message">{{ fb.message }}</p>
+            </div>
+            {% empty %}
+            <div class="card">
+              <h4>No feedback yet</h4>
+              <p>Be the first to share your thoughts about FitPal.</p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {% if messages %}
+  <div class="toast-overlay" id="toastOverlay" role="dialog" aria-live="polite">
+    <div class="card toast">
+      <div class="confetti" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <h4>Thanks for your feedback!</h4>
+      <p>Your response has been saved. We appreciate your support.</p>
+      <button class="btn" id="toastClose" type="button">Close</button>
+    </div>
+  </div>
+  {% endif %}
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:.6rem">
+          <span class="mark"><i class="fa-solid fa-dumbbell"></i></span>
+          <span>FIT<span class="accent-text">PAL</span></span>
+        </div>
+        <p style="color:#b8bdc5;max-width:460px">Your all-in-one companion for workouts, nutrition, wellness, and community — built with performance and accessibility in mind.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about-project">About</a>
+        <a href="#feedback">Feedback</a>
+      </div>
+      <div class="footer-col">
+        <h5>Launch Info</h5>
+        <a href="#developers">Developers</a>
+        <a href="#best">Best Card</a>
+        <a href="#features">Smart Plans</a>
+        <a href="#feedback">Ratings</a>
+      </div>
+      <div class="footer-col">
+        <h5>Stay Updated</h5>
+        <a href="#features">Workout Library</a>
+        <a href="#features">AI Coach</a>
+        <a href="#features">Wellness Tools</a>
+        <a href="#features">Nutrition Hub</a>
+      </div>
+    </div>
+    <div class="container" style="padding-bottom:2rem">
+      <form class="card" style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" placeholder="Get updates — your email" aria-label="Email" style="flex:1;min-width:240px;padding:.8rem 1rem;border-radius:12px;border:1px solid var(--stroke);background:#0f1114;color:var(--text)"/>
+        <button class="btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="container copyright">
+      Ac <span id="year"></span> FitPal. All rights reserved.
+    </div>
+  </footer>
+
+  <div class="ribbon">FitPal Coming Soon</div>
+
+  <script>
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 30);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = Math.max(0, targetDate - now);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const hamburger = document.getElementById('hamburger');
+    const panel = document.getElementById('mobilePanel');
+    hamburger?.addEventListener('click', () => {
+      const open = panel.hasAttribute('hidden') === false;
+      if (open) {
+        panel.setAttribute('hidden', '');
+        panel.style.display = 'none';
+      } else {
+        panel.removeAttribute('hidden');
+        panel.style.display = 'block';
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toastOverlay = document.getElementById('toastOverlay');
+    const toastClose = document.getElementById('toastClose');
+    toastClose?.addEventListener('click', () => {
+      toastOverlay?.classList.add('toast-hidden');
+    });
+  </script>
+</body>
+</html>
