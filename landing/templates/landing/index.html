@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -788,12 +788,12 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .ribbon {
-        right: 12px;
-        bottom: 12px;
-        transform: none;
-        padding: 0.4rem 0.9rem;
-        font-size: 0.75rem;
-        border-radius: 999px;
+        right: -48px;
+        bottom: 16px;
+        transform: rotate(-45deg);
+        padding: 0.45rem 1.8rem;
+        font-size: 0.7rem;
+        border-radius: 0;
       }
     }
   </style>
@@ -837,8 +837,8 @@
           We are building the best experience with smart plans, rich exercise media, and friendly guidance.
         </p>
         <div class="cta">
-          <button class="btn" type="button"><i class="fa-solid fa-bell"></i> Notify Me</button>
-          <button class="btn btn-ghost" type="button"><i class="fa-solid fa-envelope"></i> Join the Waitlist</button>
+          <a class="btn" href="#waitlist"><i class="fa-solid fa-bell"></i> Notify Me</a>
+          <a class="btn btn-ghost" href="#waitlist"><i class="fa-solid fa-envelope"></i> Join the Waitlist</a>
         </div>
         <div class="countdown-grid" aria-label="Countdown">
           <div class="card countdown-card"><strong id="days">30</strong><span>Days</span></div>
@@ -1052,6 +1052,7 @@
         <div class="feedback-wrap">
           <form class="card form" method="post" action="#feedback">
             {% csrf_token %}
+            <input type="hidden" name="form_type" value="feedback">
             <h4>Share your feedback</h4>
             <input type="text" name="name" placeholder="Your name" value="{{ form.name.value|default_if_none:'' }}" required>
             {% if form.name.errors %}<div class="field-error">{{ form.name.errors|striptags }}</div>{% endif %}
@@ -1114,17 +1115,23 @@
   </main>
 
   {% if messages %}
-  <div class="toast-overlay" id="toastOverlay" role="dialog" aria-live="polite">
-    <div class="card toast">
-      <div class="confetti" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
+    {% for message in messages %}
+    <div class="toast-overlay" id="toastOverlay" role="dialog" aria-live="polite">
+      <div class="card toast">
+        <div class="confetti" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="toast-heart"><i class="fa-solid fa-heart"></i></div>
+        {% if 'waitlist' in message.tags %}
+          <h4>Thanks! We'll notify you soon.</h4>
+        {% else %}
+          <h4>Thanks for your feedback!</h4>
+        {% endif %}
+        <p>{{ message }}</p>
+        <button class="btn" id="toastClose" type="button">Close</button>
       </div>
-      <div class="toast-heart"><i class="fa-solid fa-heart"></i></div>
-      <h4>Thanks for your feedback!</h4>
-      <p>Your response has been saved. We appreciate your support and energy.</p>
-      <button class="btn" id="toastClose" type="button">Close</button>
     </div>
-  </div>
+    {% endfor %}
   {% endif %}
 
   <footer>
@@ -1134,7 +1141,7 @@
           <span class="mark"><i class="fa-solid fa-dumbbell"></i></span>
           <span>FIT<span class="accent-text">PAL</span></span>
         </div>
-        <p style="color:#b8bdc5;max-width:460px">Your all-in-one companion for workouts, nutrition, wellness, and community — built with performance and accessibility in mind.</p>
+        <p style="color:#b8bdc5;max-width:460px">Your all-in-one companion for workouts, nutrition, wellness, and community â€” built with performance and accessibility in mind.</p>
       </div>
       <div class="footer-col">
         <h5>Quick Links</h5>
@@ -1158,12 +1165,17 @@
         <a href="#features">Nutrition Hub</a>
       </div>
     </div>
-    <div class="container" style="padding-bottom:2rem">
-      <form class="card" style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+    <div class="container" id="waitlist" style="padding-bottom:2rem">
+      <form class="card" method="post" action="#waitlist" style="display:flex;gap:.6rem;align-items:center;flex-wrap:wrap">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="waitlist">
         <i class="fa-regular fa-envelope"></i>
-        <input type="email" placeholder="Get updates — your email" aria-label="Email" style="flex:1;min-width:240px;padding:.8rem 1rem;border-radius:12px;border:1px solid var(--stroke);background:#0f1114;color:var(--text)"/>
+        <input type="email" name="email" placeholder="Get updates - your email" aria-label="Email" value="{{ waitlist_form.email.value|default_if_none:'' }}" required style="flex:1;min-width:240px;padding:.8rem 1rem;border-radius:12px;border:1px solid var(--stroke);background:#0f1114;color:var(--text)"/>
         <button class="btn" type="submit">Subscribe</button>
       </form>
+      {% if waitlist_form.email.errors %}
+        <div class="field-error" style="margin-top:0.6rem;">{{ waitlist_form.email.errors|striptags }}</div>
+      {% endif %}
     </div>
     <div class="container copyright">
       Ac <span id="year"></span> FitPal. All rights reserved.
@@ -1248,3 +1260,5 @@
   </script>
 </body>
 </html>
+
+
