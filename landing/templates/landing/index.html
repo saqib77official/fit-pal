@@ -670,6 +670,34 @@
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
+    .newyear-hero {
+      display: grid;
+      gap: 0.8rem;
+      align-items: center;
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .newyear-hero svg {
+      width: min(260px, 90%);
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+    }
+
+    .newyear-signoff {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      font-weight: 600;
+      color: #ffe2b0;
+    }
+
+    .newyear-signoff i {
+      color: #ff7aa2;
+    }
+
     .newyear-timer {
       display: grid;
       gap: 0.35rem;
@@ -971,11 +999,35 @@
           </div>
         </h2>
         <div class="card newyear-card">
-          <div>
-            <h3>Countdown to 2026</h3>
-            <p class="section-intro" style="margin:0; text-align:left;">
-              A fresh year is coming with new goals, more energy, and stronger habits. Let's start together.
-            </p>
+          <div class="newyear-hero">
+            <svg viewBox="0 0 560 200" role="img" aria-label="2026">
+              <defs>
+                <linearGradient id="gold" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#f7d27a"/>
+                  <stop offset="45%" stop-color="#f0b83a"/>
+                  <stop offset="70%" stop-color="#d4941e"/>
+                  <stop offset="100%" stop-color="#f9df9c"/>
+                </linearGradient>
+                <linearGradient id="shine" x1="0" x2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+              </defs>
+              <g fill="url(#gold)" stroke="#c27f1a" stroke-width="6">
+                <text x="50%" y="140" text-anchor="middle" font-size="140" font-family="Inter, Arial, sans-serif" font-weight="900">2026</text>
+              </g>
+              <rect x="90" y="40" width="380" height="12" fill="url(#shine)" opacity="0.7" />
+            </svg>
+            <div>
+              <h3>Countdown to 2026</h3>
+              <p class="section-intro" style="margin:0; text-align:left;">
+                A fresh year is coming with new goals, more energy, and stronger habits. Let's start together.
+              </p>
+            </div>
+            <div class="newyear-signoff">
+              <i class="fa-solid fa-heart"></i>
+              Happy New Year from Azka Khan, Rabia, Zahra Tabish
+            </div>
           </div>
           <div class="newyear-grid" id="newyearGrid" aria-label="New year countdown">
             <div class="newyear-timer"><strong id="nyDays">00</strong><span>Days</span></div>
