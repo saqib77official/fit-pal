@@ -582,6 +582,18 @@
       margin: 0 0 1rem;
     }
 
+    .toast-heart {
+      width: 58px;
+      height: 58px;
+      margin: 0 auto 0.6rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ff7aa2;
+      font-size: 1.6rem;
+    }
+
     .toast .btn {
       width: 100%;
       justify-content: center;
@@ -630,6 +642,57 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       font-size: 0.8rem;
+    }
+
+    .newyear-card {
+      background: linear-gradient(140deg, rgba(38, 166, 154, 0.18), rgba(0, 137, 123, 0.08));
+      border: 1px solid rgba(38, 166, 154, 0.35);
+      display: grid;
+      gap: 1.2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .newyear-card::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -120px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(255, 209, 102, 0.25), transparent 65%);
+      pointer-events: none;
+    }
+
+    .newyear-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+
+    .newyear-timer {
+      display: grid;
+      gap: 0.35rem;
+      justify-items: center;
+      background: rgba(12, 13, 15, 0.6);
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+    }
+
+    .newyear-timer strong {
+      font-size: 1.5rem;
+    }
+
+    .newyear-message {
+      display: none;
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 209, 102, 0.35);
+      background: rgba(255, 209, 102, 0.12);
+      color: #ffe8b0;
+      font-weight: 600;
+      text-align: center;
     }
 
     footer {
@@ -697,9 +760,12 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .ribbon {
-        bottom: 12px;
         right: 12px;
-        font-size: 0.85rem;
+        bottom: 12px;
+        transform: none;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.75rem;
+        border-radius: 999px;
       }
     }
   </style>
@@ -897,6 +963,33 @@
       </div>
     </section>
 
+    <section id="newyear">
+      <div class="container">
+        <h2 class="section-heading">New Year 2026
+          <div class="underline">
+            <span></span><span></span><span></span>
+          </div>
+        </h2>
+        <div class="card newyear-card">
+          <div>
+            <h3>Countdown to 2026</h3>
+            <p class="section-intro" style="margin:0; text-align:left;">
+              A fresh year is coming with new goals, more energy, and stronger habits. Let's start together.
+            </p>
+          </div>
+          <div class="newyear-grid" id="newyearGrid" aria-label="New year countdown">
+            <div class="newyear-timer"><strong id="nyDays">00</strong><span>Days</span></div>
+            <div class="newyear-timer"><strong id="nyHours">00</strong><span>Hours</span></div>
+            <div class="newyear-timer"><strong id="nyMinutes">00</strong><span>Minutes</span></div>
+            <div class="newyear-timer"><strong id="nySeconds">00</strong><span>Seconds</span></div>
+          </div>
+          <div class="newyear-message" id="newyearMessage">
+            Happy New Year 2026! This year brings more happiness, health, and success in your life.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="feedback">
       <div class="container">
         <h2 class="section-heading">Feedback and ratings
@@ -974,8 +1067,9 @@
       <div class="confetti" aria-hidden="true">
         <span></span><span></span><span></span><span></span><span></span>
       </div>
+      <div class="toast-heart"><i class="fa-solid fa-heart"></i></div>
       <h4>Thanks for your feedback!</h4>
-      <p>Your response has been saved. We appreciate your support.</p>
+      <p>Your response has been saved. We appreciate your support and energy.</p>
       <button class="btn" id="toastClose" type="button">Close</button>
     </div>
   </div>
@@ -1046,6 +1140,38 @@
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    const newYearDate = new Date('2026-01-01T00:00:00');
+    const nyDays = document.getElementById('nyDays');
+    const nyHours = document.getElementById('nyHours');
+    const nyMinutes = document.getElementById('nyMinutes');
+    const nySeconds = document.getElementById('nySeconds');
+    const nyGrid = document.getElementById('newyearGrid');
+    const nyMessage = document.getElementById('newyearMessage');
+
+    function updateNewYearCountdown() {
+      if (!nyDays || !nyHours || !nyMinutes || !nySeconds) {
+        return;
+      }
+      const now = new Date();
+      const diff = newYearDate - now;
+      if (diff <= 0) {
+        if (nyGrid) nyGrid.style.display = 'none';
+        if (nyMessage) nyMessage.style.display = 'block';
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      nyDays.textContent = String(days).padStart(2, '0');
+      nyHours.textContent = String(hours).padStart(2, '0');
+      nyMinutes.textContent = String(minutes).padStart(2, '0');
+      nySeconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateNewYearCountdown();
+    setInterval(updateNewYearCountdown, 1000);
 
     const hamburger = document.getElementById('hamburger');
     const panel = document.getElementById('mobilePanel');
